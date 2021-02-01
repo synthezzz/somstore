@@ -3,9 +3,9 @@ $currency = '$'; //Currency sumbol or code
 
 //db settings
 $db_username = 'root';
-$db_password = 'passwd';
+$db_password = 'password';
 $db_name = 'somstore';
-$db_host = 'localhost:3306';
+$db_host = 'somstore-rds:3306';
 $mysqli = new mysqli($db_host, $db_username, $db_password,$db_name);
 
 
