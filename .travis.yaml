@@ -1,0 +1,23 @@
+language: generic
+sudo: required
+services:
+  - docker
+after_success:
+  - docker build -t synthezzz/somstore .
+  - docker build -t synthezzz/mysql_somstore ./mysql
+  - echo "$DHUB_PASS" | docker login -u "$DHUB_ID" --password-stdin
+  - docker push synthezzz/somstore
+  - docker push synthezzz/mysql_somstore
+deploy: 
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: somstore2
+  env: Somstore2-env
+  bucket_name: elasticbeanstalk-us-east-2-720927163681
+  bucket_path: somstore2
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  
