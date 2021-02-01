@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  mysql:
+    build: 
+      dockerfile: Dockerfile
+      context: ./mysql
+    environment: 
+      - MYSQL_USER=root
+      - MYSQ_PASSWORD=passwd
+      - MYSQL_DATABASE=somstore
+  somstore: 
+    build: 
+      dockerfile: Dockerfile
+      context: ./
+    ports: 
+    - '3050:80'
