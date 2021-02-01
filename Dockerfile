@@ -1,7 +1,6 @@
 FROM php:apache
+RUN docker-php-ext-install mysqli
 RUN apachectl restart
-RUN DEBIAN_FRONTEND=noninteractive \ 
-&& apt install docker-php-ext-install mysqli
 WORKDIR /var/www/html
 COPY . .
 EXPOSE 80
